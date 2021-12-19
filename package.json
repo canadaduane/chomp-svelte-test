@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@jspm/generator": "^1.0.0-beta.20",
+    "@swc/cli": "^0.1.55",
+    "@swc/core": "^1.2.121",
+    "svelte": "^3.44.3"
+  }
+}

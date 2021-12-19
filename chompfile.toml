@@ -1,0 +1,36 @@
+version = 0.1
+
+[[task]]
+  target = "target/Debug/chp.exe"
+  run = "cargo build"
+
+[[task]]
+  name = "install"
+  target = "node_modules/.bin/swc"
+  run = "npm install -D @swc/core @swc/cli @jspm/generator svelte"
+
+[[task]]
+  name = "build"
+  deps = ["build:ts", "build:svelte", "build:html"]
+
+[[task]]
+  name = "build:ts"
+  target = "lib/#.js"
+  deps = ["node_modules/.bin/swc", "src/#.ts"]
+  run = "swc $dep -o $target"
+
+[[task]]
+  name = "build:svelte"
+  target = "lib/#.svelte.js"
+  deps = ["src/#.svelte"]
+  run = "node compile-svelte.js"
+
+[[task]]
+  name = "build:html"
+  target = "lib/index.html"
+  deps = ["src/index.html", "lib/main.js"]
+  run = "node generator.mjs"
+
+[[task]]
+  name = "clean"
+  run = "rm lib/*"
