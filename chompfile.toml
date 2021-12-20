@@ -11,7 +11,7 @@ version = 0.1
 
 [[task]]
   name = "build"
-  deps = ["build:ts", "build:svelte", "build:html"]
+  deps = ["build:ts", "build:svelte", "build:html", "build:css"]
 
 [[task]]
   name = "build:ts"
@@ -27,9 +27,15 @@ version = 0.1
 
 [[task]]
   name = "build:html"
-  target = "lib/index.html"
-  deps = ["src/index.html", "lib/main.js"]
+  target = "lib/main.html"
+  deps = ["src/main.html", "lib/main.js"]
   run = "node generator.mjs"
+
+[[task]]
+  name = "build:css"
+  target = "lib/main.css"
+  deps = ["lib/component.svelte.css"]
+  run = "cat lib/component.svelte.css > lib/main.css"
 
 [[task]]
   name = "clean"

@@ -7,7 +7,8 @@ const svelte = require("svelte/compiler");
 const source = fs.readFileSync(process.env.dep, "utf-8");
 
 const result = svelte.compile(source, {
-  // options
+  filename: process.env.dep,
+  css: false,
 });
 
 const jsFile = process.env.target.replace(/\.js$/, ".js");
